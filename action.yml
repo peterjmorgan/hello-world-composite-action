@@ -29,5 +29,5 @@ runs:
       shell: bash
     # - name: setup tmate
       # uses: mxschmitt/action-tmate@v3
-    - run: bash $GITHUB_ACTION_PATH/../goodbye.sh
+    - run: bash $GITHUB_ACTION_PATH/goodbye.sh
       shell: bash
