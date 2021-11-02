@@ -9,6 +9,9 @@ outputs:
   random-number:
     description: "Random number"
     value: ${{ steps.random-number-generator.outputs.random-id }}
+  ls-value:
+    description: output of ls
+    value: ${{ steps.ls-outputter.outputs.ls-output }}
 runs:
   using: "composite"
   steps:
@@ -17,11 +20,12 @@ runs:
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
-    - run: echo "$(ls -l)"
+    - id: ls-outputter
+      run: echo "::set-output name=ls-output::$(ls -l)"
       shell: bash
     - run: echo "$(pwd)"
       shell: bash
     - run: env
       shell: bash
-    - run: $GITHUB_ACTION_PATH/goodbye.sh
+    - run: $GITHUB_ACTION_PATH/../goodbye.sh
       shell: bash
